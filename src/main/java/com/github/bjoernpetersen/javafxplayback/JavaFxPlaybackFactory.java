@@ -38,7 +38,7 @@ public class JavaFxPlaybackFactory implements Mp3PlaybackFactory, WavePlaybackFa
   @Nonnull
   @Override
   public Playback createPlayback(@Nonnull File inputFile)
-    throws UnsupportedAudioFileException, IOException {
+      throws UnsupportedAudioFileException, IOException {
     return new JavaFxPlayback(inputFile);
   }
 
