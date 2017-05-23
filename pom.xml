@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.bjoernpetersen</groupId>
   <artifactId>javafxPlayback</artifactId>
-  <version>0.1.1-SNAPSHOT</version>
+  <version>0.1.1</version>
   <url>https://github.com/BjoernPetersen/JMusicBot-javafxPlayback</url>
   <description>TODO</description>
   <name>${project.groupId}:${project.artifactId}</name>
