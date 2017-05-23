@@ -47,13 +47,13 @@
     <dependency>
       <groupId>com.github.bjoernpetersen</groupId>
       <artifactId>musicbot</artifactId>
-      <version>0.1.0</version>
+      <version>0.3.0</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.github.bjoernpetersen</groupId>
       <artifactId>musicbot-mp3Playback</artifactId>
-      <version>0.1.0</version>
+      <version>0.2.0</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
