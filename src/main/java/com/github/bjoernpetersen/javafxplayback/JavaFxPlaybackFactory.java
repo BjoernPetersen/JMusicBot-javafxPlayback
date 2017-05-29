@@ -1,5 +1,6 @@
 package com.github.bjoernpetersen.javafxplayback;
 
+import com.github.bjoernpetersen.jmusicbot.InitStateWriter;
 import com.github.bjoernpetersen.jmusicbot.config.Config;
 import com.github.bjoernpetersen.jmusicbot.config.Config.Entry;
 import com.github.bjoernpetersen.jmusicbot.playback.Playback;
@@ -28,7 +29,7 @@ public class JavaFxPlaybackFactory implements Mp3PlaybackFactory, WavePlaybackFa
   }
 
   @Override
-  public void initialize() {
+  public void initialize(@Nonnull InitStateWriter stateWriter) {
   }
 
   @Override
