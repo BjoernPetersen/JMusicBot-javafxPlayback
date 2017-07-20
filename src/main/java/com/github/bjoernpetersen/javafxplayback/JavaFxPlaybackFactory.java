@@ -3,6 +3,8 @@ package com.github.bjoernpetersen.javafxplayback;
 import com.github.bjoernpetersen.jmusicbot.InitStateWriter;
 import com.github.bjoernpetersen.jmusicbot.config.Config;
 import com.github.bjoernpetersen.jmusicbot.config.Config.Entry;
+import com.github.bjoernpetersen.jmusicbot.platform.Platform;
+import com.github.bjoernpetersen.jmusicbot.platform.Support;
 import com.github.bjoernpetersen.jmusicbot.playback.Playback;
 import com.github.bjoernpetersen.jmusicbot.playback.PlaybackFactory;
 import com.github.bjoernpetersen.jmusicbot.playback.included.WavePlaybackFactory;
@@ -20,6 +22,22 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class JavaFxPlaybackFactory implements Mp3PlaybackFactory, WavePlaybackFactory {
 
   public JavaFxPlaybackFactory() {
+  }
+
+  @Nonnull
+  @Override
+  public Support getSupport(@Nonnull Platform platform) {
+    switch (platform) {
+      case ANDROID:
+        return Support.NO;
+      case UNKNOWN:
+        return Support.MAYBE;
+      case LINUX:
+      case WINDOWS:
+        return Support.YES;
+      default:
+        return Support.NO;
+    }
   }
 
   @Nonnull
