@@ -26,6 +26,12 @@ public class JavaFxPlaybackFactory implements Mp3PlaybackFactory, WavePlaybackFa
 
   @Nonnull
   @Override
+  public String getReadableName() {
+    return "JavaFX PlaybackFactory";
+  }
+
+  @Nonnull
+  @Override
   public Support getSupport(@Nonnull Platform platform) {
     switch (platform) {
       case ANDROID:
