@@ -39,30 +39,36 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <!-- dependencies -->
+    <junit.version>4.12</junit.version>
+    <jsr305.version>3.0.2</jsr305.version>
+    <musicbot.version>0.8.0-SNAPSHOT</musicbot.version>
+    <mp3Playback.version>0.8.0</mp3Playback.version>
   </properties>
   <dependencies>
     <dependency>
       <artifactId>junit</artifactId>
       <groupId>junit</groupId>
-      <version>4.12</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.google.code.findbugs</groupId>
       <artifactId>jsr305</artifactId>
-      <version>3.0.2</version>
+      <version>${jsr305.version}</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.github.bjoernpetersen</groupId>
       <artifactId>musicbot</artifactId>
-      <version>0.8.0-SNAPSHOT</version>
+      <version>${musicbot.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.github.bjoernpetersen</groupId>
       <artifactId>musicbot-mp3Playback</artifactId>
-      <version>0.6.0-SNAPSHOT</version>
+      <version>${mp3Playback.version}</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
