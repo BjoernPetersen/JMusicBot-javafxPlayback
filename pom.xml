@@ -43,7 +43,7 @@
     <!-- dependencies -->
     <junit.version>4.12</junit.version>
     <jsr305.version>3.0.2</jsr305.version>
-    <musicbot.version>0.9.0-SNAPSHOT</musicbot.version>
+    <musicbot.version>0.10.0-SNAPSHOT</musicbot.version>
     <mp3Playback.version>0.8.0</mp3Playback.version>
   </properties>
   <dependencies>
