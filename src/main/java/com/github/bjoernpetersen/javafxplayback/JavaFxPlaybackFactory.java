@@ -34,13 +34,12 @@ public class JavaFxPlaybackFactory implements Mp3PlaybackFactory, WavePlaybackFa
   @Override
   public Support getSupport(@Nonnull Platform platform) {
     switch (platform) {
-      case ANDROID:
-        return Support.NO;
-      case UNKNOWN:
-        return Support.MAYBE;
       case LINUX:
       case WINDOWS:
         return Support.YES;
+      case UNKNOWN:
+        return Support.MAYBE;
+      case ANDROID:
       default:
         return Support.NO;
     }
@@ -54,6 +53,12 @@ public class JavaFxPlaybackFactory implements Mp3PlaybackFactory, WavePlaybackFa
 
   @Override
   public void initialize(@Nonnull InitStateWriter stateWriter) {
+  }
+
+  @Nonnull
+  @Override
+  public List<? extends Entry> getMissingConfigEntries() {
+    return Collections.emptyList();
   }
 
   @Override
