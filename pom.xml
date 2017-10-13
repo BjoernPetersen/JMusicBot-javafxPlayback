@@ -44,7 +44,7 @@
     <junit.version>4.12</junit.version>
     <jsr305.version>3.0.2</jsr305.version>
     <musicbot.version>0.10.0</musicbot.version>
-    <mp3Playback.version>0.8.0</mp3Playback.version>
+    <mp3Playback.version>0.10.0</mp3Playback.version>
   </properties>
   <dependencies>
     <dependency>
