@@ -7,8 +7,9 @@ import com.github.bjoernpetersen.jmusicbot.platform.Platform;
 import com.github.bjoernpetersen.jmusicbot.platform.Support;
 import com.github.bjoernpetersen.jmusicbot.playback.Playback;
 import com.github.bjoernpetersen.jmusicbot.playback.PlaybackFactory;
+import com.github.bjoernpetersen.jmusicbot.playback.included.Mp3PlaybackFactory;
 import com.github.bjoernpetersen.jmusicbot.playback.included.WavePlaybackFactory;
-import com.github.bjoernpetersen.mp3Playback.Mp3PlaybackFactory;
+import com.github.zafarkhaja.semver.Version;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
@@ -16,10 +17,12 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javafx.scene.media.MediaException;
 import javax.annotation.Nonnull;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class JavaFxPlaybackFactory implements Mp3PlaybackFactory, WavePlaybackFactory {
+public class JavaFxPlaybackFactory implements Mp3PlaybackFactory, WavePlaybackFactory,
+    com.github.bjoernpetersen.mp3Playback.Mp3PlaybackFactory {
 
   public JavaFxPlaybackFactory() {
   }
@@ -67,9 +70,22 @@ public class JavaFxPlaybackFactory implements Mp3PlaybackFactory, WavePlaybackFa
 
   @Nonnull
   @Override
-  public Playback createPlayback(@Nonnull File inputFile)
-      throws UnsupportedAudioFileException, IOException {
-    return new JavaFxPlayback(inputFile);
+  public Version getMinSupportedVersion() {
+    return Version.forIntegers(0, 14, 0);
+  }
+
+  @Nonnull
+  @Override
+  public Playback createPlayback(@Nonnull File inputFile) throws UnsupportedAudioFileException, IOException {
+    try {
+      return new JavaFxPlayback(inputFile);
+    } catch (MediaException e) {
+      if (e.getType() == MediaException.Type.MEDIA_UNSUPPORTED) {
+        throw new UnsupportedAudioFileException(e.getMessage());
+      } else {
+        throw new IOException(e);
+      }
+    }
   }
 
   @Nonnull
@@ -78,11 +94,12 @@ public class JavaFxPlaybackFactory implements Mp3PlaybackFactory, WavePlaybackFa
     Set<Class<? extends PlaybackFactory>> bases = new HashSet<>();
     bases.add(Mp3PlaybackFactory.class);
     bases.add(WavePlaybackFactory.class);
+    bases.add(com.github.bjoernpetersen.mp3Playback.Mp3PlaybackFactory.class);
     // theoretically more are possible. Just need to create marker interfaces.
     return bases;
   }
 
   @Override
-  public void close() throws IOException {
+  public void close() {
   }
 }
