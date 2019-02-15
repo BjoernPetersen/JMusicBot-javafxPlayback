@@ -15,14 +15,8 @@ class JavaFxPlaybackFactory : Mp3PlaybackFactory, WavePlaybackFactory {
     override val name: String = "JavaFX"
     override val description: String = "Plays MP3 or Wave songs using JavaFX's included feature"
 
-    override fun createConfigEntries(config: Config): List<Config.Entry<*>> {
-        return emptyList()
-    }
-
-    override fun createSecretEntries(secrets: Config): List<Config.Entry<*>> {
-        return emptyList()
-    }
-
+    override fun createConfigEntries(config: Config): List<Config.Entry<*>> = emptyList()
+    override fun createSecretEntries(secrets: Config): List<Config.Entry<*>> = emptyList()
     override fun createStateEntries(state: Config) {}
 
     override fun initialize(initStateWriter: InitStateWriter) {}

@@ -1,21 +1,20 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version Version.KOTLIN
+    id("com.github.ben-manes.versions") version Plugin.VERSIONS
+    kotlin("jvm") version Plugin.KOTLIN
     idea
 
-    id("com.github.spotbugs") version Version.SPOTBUGS
+    id("com.github.spotbugs") version Plugin.SPOTBUGS_PLUGIN
 
-    id("com.github.johnrengelman.shadow") version Version.SHADOW_JAR
+    id("com.github.johnrengelman.shadow") version Plugin.SHADOW_JAR
 }
 
 group = "com.github.bjoernpetersen"
-version = "0.12.0-SNAPSHOT"
+version = "0.12.0"
 
 repositories {
     jcenter()
-    maven("https://oss.sonatype.org/content/repositories/snapshots")
 }
 
 idea {
@@ -26,6 +25,7 @@ idea {
 
 spotbugs {
     isIgnoreFailures = true
+    toolVersion = Plugin.SPOTBUGS_TOOL
 }
 
 java {
@@ -47,30 +47,26 @@ tasks {
     }
 }
 
-configurations.all {
-    // TODO remove or comment out when MusicBot refactor is released
-    resolutionStrategy.cacheChangingModulesFor(1, TimeUnit.MINUTES)
-}
-
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
     implementation(
         group = "io.github.microutils",
         name = "kotlin-logging",
-        version = Version.KOTLIN_LOGGING)
+        version = Lib.KOTLIN_LOGGING) {
+        exclude("org.slf4j")
+        exclude("org.jetbrains")
+        exclude("org.jetbrains.kotlin")
+    }
     compileOnly(
         group = "com.github.bjoernpetersen",
         name = "musicbot",
-        version = Version.MUSICBOT) {
-        isChanging = true
-    }
+        version = Lib.MUSICBOT)
 
     testImplementation(
         group = "org.junit.jupiter",
         name = "junit-jupiter-api",
-        version = Version.JUNIT)
-    testImplementation(
+        version = Lib.JUNIT)
+    testRuntime(
         group = "org.junit.jupiter",
         name = "junit-jupiter-engine",
-        version = Version.JUNIT)
+        version = Lib.JUNIT)
 }

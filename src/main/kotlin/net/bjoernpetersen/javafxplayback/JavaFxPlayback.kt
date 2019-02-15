@@ -11,7 +11,7 @@ internal class JavaFxPlayback @Throws(IOException::class, MediaException::class)
 constructor(file: File) : AbstractPlayback() {
 
     private val player = MediaPlayer(Media(file.toURI().toURL().toExternalForm())).also {
-        it.onEndOfMedia = Runnable { this.markDone() }
+        it.setOnEndOfMedia { markDone() }
     }
 
     override fun play() {
